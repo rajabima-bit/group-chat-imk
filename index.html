@@ -1,92 +1,21 @@
-<!-- redeploy -->
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Group Chat IMK</title>
-
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-
-    <style>
-        body {
-            font-family: Arial;
-            background: #f2f2f2;
-        }
-        .chat-box {
-            width: 360px;
-            background: white;
-            padding: 10px;
-            margin: 40px auto;
-            border-radius: 8px;
-        }
-        #messages {
-            height: 220px;
-            border: 1px solid #ccc;
-            padding: 5px;
-            overflow-y: auto;
-            margin-bottom: 5px;
-        }
-        input, button {
-            width: 100%;
-            padding: 6px;
-            margin-top: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Group Chat IMK</title>
 </head>
 <body>
+  <h1>Group Chat IMK</h1>
 
-<div class="chat-box">
-    <h3>Group Chat IMK (Realtime)</h3>
+  <!-- Input nama dan pesan -->
+  <input type="text" id="name" placeholder="Nama">
+  <input type="text" id="message" placeholder="Tulis pesan...">
+  <button id="sendBtn">Kirim</button>
 
-    <input type="text" id="nama" placeholder="Nama">
-    <div id="messages"></div>
-    <input type="text" id="pesan" placeholder="Ketik pesan">
-    <button onclick="kirim()">Kirim</button>
-</div>
+  <!-- Area chat -->
+  <div id="chatbox" style="margin-top:20px; border:1px solid #ccc; padding:10px; min-height:200px;"></div>
 
-<script>
-    // 🔴 GANTI DENGAN CONFIG FIREBASE KAMU
-    const firebaseConfig = {
-  apiKey: "AIzaSyA0zmDsHdOBwEkPPqruiE52ccnitAd3rBE",
-  authDomain: "group-chat-imk.firebaseapp.com",
-  databaseURL: "https://group-chat-imk-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "group-chat-imk",
-  storageBucket: "group-chat-imk.firebasestorage.app",
-  messagingSenderId: "981999846984",
-  appId: "1:981999846984:web:38fcc2680be35c2cea7a7d",
-  measurementId: "G-N5NZ57QH4Y"
-};
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    function kirim() {
-        let nama = document.getElementById("nama").value;
-        let pesan = document.getElementById("pesan").value;
-
-        if (nama === "" || pesan === "") return;
-
-        db.collection("messages").add({
-            nama: nama,
-            pesan: pesan,
-            waktu: new Date()
-        });
-
-        document.getElementById("pesan").value = "";
-    }
-
-    db.collection("messages")
-      .orderBy("waktu")
-      .onSnapshot(snapshot => {
-        let box = document.getElementById("messages");
-        box.innerHTML = "";
-        snapshot.forEach(doc => {
-            let d = doc.data();
-            box.innerHTML += `<p><b>${d.nama}:</b> ${d.pesan}</p>`;
-        });
-        box.scrollTop = box.scrollHeight;
-      });
-</script>
+  <!-- Script harus di akhir body -->
+  <script src="script.js"></script>
 </body>
 </html>
