@@ -3,41 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Group Chat IMK Realtime</title>
-  <link rel="stylesheet" href="style.css"> <!-- opsional -->
+  <style>
+    body { font-family: Arial; margin:20px; }
+    #chatbox { margin-top:20px; border:1px solid #ccc; padding:10px; min-height:200px; max-height:400px; overflow-y:auto; }
+    input { margin:5px; padding:5px; }
+    button { padding:5px 10px; }
+  </style>
 </head>
 <body>
   <h1>Group Chat IMK Realtime</h1>
 
-  <!-- Input nama dan pesan -->
   <input type="text" id="name" placeholder="Nama">
   <input type="text" id="message" placeholder="Tulis pesan...">
   <button id="sendBtn">Kirim</button>
 
-  <!-- Area chat -->
-  <div id="chatbox" style="margin-top:20px; border:1px solid #ccc; padding:10px; min-height:200px;"></div>
+  <div id="chatbox"></div>
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-  <!-- Firebase Config: LETAKNYA DI SINI -->
+  <!-- Firebase Config -->
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyA0zmDsHdOBwEkPPqruiE52ccnitAd3rBE",
-      authDomain: "group-chat-imk.firebaseapp.com",
-      databaseURL: "https://group-chat-imk-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "group-chat-imk",
-      storageBucket: "group-chat-imk.firebasestorage.app",
-      messagingSenderId: "981999846984",
-      appId: "1:981999846984:web:6f56001d5be6b826ea7a7d",
-      measurementId: "G-VDZ1ZTE6SH"
-   };
+      apiKey : "AIzaSyA0zmDsHdOBwEkPPqruiE52ccnitAd3rBE" , 
+      authDomain : "group-chat-imk.firebaseapp.com" , 
+      URL basis data : "https://group-chat-imk-default-rtdb.asia-southeast1.firebasedatabase.app" , 
+      projectId : "group-chat-imk" , 
+      storageBucket : "group-chat-imk.firebasestorage.app" , 
+      messagingSenderId : "981999846984" , 
+      ID aplikasi : "1:981999846984:web:38fcc2680be35c2cea7a7d" , 
+      measurementId : "G-N5NZ57QH4Y" 
+    };
 
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
   </script>
 
-  <!-- Script utama: LETAKNYA DI BAWAH -->
+  <!-- Script utama -->
   <script src="script.js"></script>
 </body>
 </html>
