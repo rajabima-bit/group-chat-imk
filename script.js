@@ -8,11 +8,12 @@ function sendMessage() {
   const name = nameInput.value.trim();
   const message = messageInput.value.trim();
 
-  if (name === "" || message === "") {
+  if (!name || !message) {
     alert("Nama atau pesan belum diisi!");
     return;
   }
 
+  // Simpan pesan ke Firebase
   db.ref("messages").push({
     name: name,
     message: message
@@ -21,13 +22,16 @@ function sendMessage() {
   messageInput.value = "";
 }
 
-// Hubungkan tombol
+// Tombol Kirim
 sendBtn.addEventListener("click", sendMessage);
 
-// Tampilkan pesan realtime dari Firebase
-db.ref("messages").on("child_added", (snapshot) => {
+// Tampilkan semua pesan realtime
+db.ref("messages").on("child_added", snapshot => {
   const msg = snapshot.val();
   const msgDiv = document.createElement("div");
   msgDiv.textContent = msg.name + ": " + msg.message;
   chatbox.appendChild(msgDiv);
-});ventListener("click", sendMessage);
+
+  // Scroll ke bawah otomatis
+  chatbox.scrollTop = chatbox.scrollHeight;
+});
