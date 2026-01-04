@@ -2,10 +2,11 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Group Chat IMK</title>
+  <title>Group Chat IMK Realtime</title>
+  <link rel="stylesheet" href="style.css"> <!-- opsional -->
 </head>
 <body>
-  <h1>Group Chat IMK</h1>
+  <h1>Group Chat IMK Realtime</h1>
 
   <!-- Input nama dan pesan -->
   <input type="text" id="name" placeholder="Nama">
@@ -15,7 +16,27 @@
   <!-- Area chat -->
   <div id="chatbox" style="margin-top:20px; border:1px solid #ccc; padding:10px; min-height:200px;"></div>
 
-  <!-- Script harus di akhir body -->
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <!-- Firebase Config: LETAKNYA DI SINI -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "API_KEY_ANDA",
+      authDomain: "PROJECT_ID.firebaseapp.com",
+      databaseURL: "DATABASE_URL_ANDA",
+      projectId: "PROJECT_ID",
+      storageBucket: "PROJECT_ID.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+
+  <!-- Script utama: LETAKNYA DI BAWAH -->
   <script src="script.js"></script>
 </body>
 </html>
