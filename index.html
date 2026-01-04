@@ -42,7 +42,7 @@
     <input type="text" id="nama" placeholder="Nama">
     <div id="messages"></div>
     <input type="text" id="pesan" placeholder="Ketik pesan">
-    <button onclick="sendMesseage()">Kirim</button>
+    <button onclick="kirim()">Kirim</button>
 </div>
 
 <script>
@@ -83,10 +83,10 @@
         box.innerHTML = "";
         snapshot.forEach(doc => {
             let d = doc.data();
-            box.innerHTML += <p><b>${d.nama}:</b> ${d.pesan}</p>;
+            box.innerHTML += `<p><b>${d.nama}:</b> ${d.pesan}</p>`;
         });
         box.scrollTop = box.scrollHeight;
       });
-</script>src="script.js"></script>
+</script>
 </body>
 </html>
